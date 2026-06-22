@@ -67,6 +67,8 @@ Use [`prompt-crafting-for-coding-agents`](skills/prompt-crafting-for-coding-agen
 
 Use [`cross-session-handoff-and-continuity`](skills/cross-session-handoff-and-continuity/SKILL.md) to preserve verified repository state, evidence, blockers, decisions, and one executable next action across chats, tools, and coding-agent runs.
 
+Use [`task-dossier-lifecycle`](skills/task-dossier-lifecycle/SKILL.md) to manage optional, project-authorized task dossiers as durable records of decisions, evidence, plans, acceptance criteria, risks, and lifecycle state.
+
 ## v0.1 core skills
 
 - `repo-state-audit`
@@ -82,6 +84,7 @@ Use [`cross-session-handoff-and-continuity`](skills/cross-session-handoff-and-co
 - `git-integration-and-release-workflow`
 - `prompt-crafting-for-coding-agents`
 - `cross-session-handoff-and-continuity`
+- `task-dossier-lifecycle`
 
 See [design principles](docs/design-principles.md), [customization guidance](docs/customization.md), and the [volatile documentation policy](docs/volatile-documentation-policy.md) for the repository-wide rules.
 
