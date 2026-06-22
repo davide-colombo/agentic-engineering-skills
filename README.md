@@ -73,6 +73,8 @@ Use [`production-run-launch-and-monitoring`](skills/production-run-launch-and-mo
 
 Use [`failure-recovery-and-rerun-planning`](skills/failure-recovery-and-rerun-planning/SKILL.md) to classify failed or partial state, preserve evidence, and plan safe recovery, resume, or rerun boundaries.
 
+Use [`remote-execution-safety`](skills/remote-execution-safety/SKILL.md) to govern SSH, remote commands, remote repositories, process control, file operations, transfers, and production work with explicit authorization and separated local/remote evidence.
+
 ## v0.1 core skills
 
 - `repo-state-audit`
@@ -91,6 +93,7 @@ Use [`failure-recovery-and-rerun-planning`](skills/failure-recovery-and-rerun-pl
 - `task-dossier-lifecycle`
 - `production-run-launch-and-monitoring`
 - `failure-recovery-and-rerun-planning`
+- `remote-execution-safety`
 
 See [design principles](docs/design-principles.md), [customization guidance](docs/customization.md), and the [volatile documentation policy](docs/volatile-documentation-policy.md) for the repository-wide rules.
 
