@@ -59,6 +59,8 @@ Use [`hardware-aware-parallelism`](skills/hardware-aware-parallelism/SKILL.md) t
 
 Use [`data-transfer-and-integrity`](skills/data-transfer-and-integrity/SKILL.md) to audit transfers, manifests, checksums, partial state, archives, and provenance before downstream use.
 
+Use [`read-only-audit-protocol`](skills/read-only-audit-protocol/SKILL.md) for strict non-mutating audits of commits, branches, patches, generated outputs, validation evidence, agent reports, and integration or release readiness.
+
 ## v0.1 core skills
 
 - `repo-state-audit`
@@ -67,6 +69,10 @@ Use [`data-transfer-and-integrity`](skills/data-transfer-and-integrity/SKILL.md)
 - `configuration-and-environment-integrity`
 - `hardware-aware-parallelism`
 - `data-transfer-and-integrity`
+
+## v0.2 skills
+
+- `read-only-audit-protocol`
 
 See [design principles](docs/design-principles.md), [customization guidance](docs/customization.md), and the [volatile documentation policy](docs/volatile-documentation-policy.md) for the repository-wide rules.
 
