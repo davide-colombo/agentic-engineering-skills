@@ -61,6 +61,8 @@ Use [`data-transfer-and-integrity`](skills/data-transfer-and-integrity/SKILL.md)
 
 Use [`read-only-audit-protocol`](skills/read-only-audit-protocol/SKILL.md) for strict non-mutating audits of commits, branches, patches, generated outputs, validation evidence, agent reports, and integration or release readiness.
 
+Use [`git-integration-and-release-workflow`](skills/git-integration-and-release-workflow/SKILL.md) to integrate audited branches with fast-forward controls, separate local merges from pushes, clean up local branches, and close authorized tag or release workflows.
+
 ## v0.1 core skills
 
 - `repo-state-audit`
@@ -73,6 +75,7 @@ Use [`read-only-audit-protocol`](skills/read-only-audit-protocol/SKILL.md) for s
 ## v0.2 skills
 
 - `read-only-audit-protocol`
+- `git-integration-and-release-workflow`
 
 See [design principles](docs/design-principles.md), [customization guidance](docs/customization.md), and the [volatile documentation policy](docs/volatile-documentation-policy.md) for the repository-wide rules.
 
