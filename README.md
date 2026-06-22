@@ -75,6 +75,10 @@ Use [`failure-recovery-and-rerun-planning`](skills/failure-recovery-and-rerun-pl
 
 Use [`remote-execution-safety`](skills/remote-execution-safety/SKILL.md) to govern SSH, remote commands, remote repositories, process control, file operations, transfers, and production work with explicit authorization and separated local/remote evidence.
 
+Use [`agent-output-verification-and-claim-audit`](skills/agent-output-verification-and-claim-audit/SKILL.md) to verify a coding-agent report against on-disk and tool-output evidence by extracting, classifying, and independently checking each consequential claim before relying on the reported state.
+
+Use [`evidence-citation-discipline`](skills/evidence-citation-discipline/SKILL.md) to write reports in which every consequential claim is bound to inspectable evidence, separating confirmed facts from interpretations, assumptions, and unresolved items.
+
 ## v0.1 core skills
 
 - `repo-state-audit`
@@ -94,6 +98,15 @@ Use [`remote-execution-safety`](skills/remote-execution-safety/SKILL.md) to gove
 - `production-run-launch-and-monitoring`
 - `failure-recovery-and-rerun-planning`
 - `remote-execution-safety`
+
+## v0.3 skills
+
+- `agent-output-verification-and-claim-audit`
+- `evidence-citation-discipline`
+
+## Local repository validation
+
+Run `python3 scripts/validate_skills.py` from the repository root to check the skill inventory, per-skill frontmatter, README cross-references, and basic public-safety patterns. The validator uses the Python standard library only and does not perform network or write actions.
 
 See [design principles](docs/design-principles.md), [customization guidance](docs/customization.md), and the [volatile documentation policy](docs/volatile-documentation-policy.md) for the repository-wide rules.
 
