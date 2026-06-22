@@ -54,6 +54,8 @@ Use [`resumable-pipeline-design`](skills/resumable-pipeline-design/SKILL.md) to 
 
 Use [`configuration-and-environment-integrity`](skills/configuration-and-environment-integrity/SKILL.md) to audit configuration behavior, runtime parity, dependency setup, tool discovery, and reproducible environments.
 
+Use [`hardware-aware-parallelism`](skills/hardware-aware-parallelism/SKILL.md) to audit worker topology, resource budgets, hidden threading, contention, and scaling behavior.
+
 ## v0.1 roadmap
 
 - `repo-state-audit`
