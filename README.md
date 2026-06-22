@@ -52,6 +52,8 @@ Use [`code-review-and-test-audit`](skills/code-review-and-test-audit/SKILL.md) f
 
 Use [`resumable-pipeline-design`](skills/resumable-pipeline-design/SKILL.md) to design or audit checkpointed multi-step workflows, failure recovery, and safe resume behavior.
 
+Use [`configuration-and-environment-integrity`](skills/configuration-and-environment-integrity/SKILL.md) to audit configuration behavior, runtime parity, dependency setup, tool discovery, and reproducible environments.
+
 ## v0.1 roadmap
 
 - `repo-state-audit`
