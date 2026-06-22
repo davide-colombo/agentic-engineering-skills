@@ -71,6 +71,8 @@ Use [`task-dossier-lifecycle`](skills/task-dossier-lifecycle/SKILL.md) to manage
 
 Use [`production-run-launch-and-monitoring`](skills/production-run-launch-and-monitoring/SKILL.md) to plan, authorize, launch, monitor, intervene in, and validate long-running production jobs with explicit resource, observability, and evidence controls.
 
+Use [`failure-recovery-and-rerun-planning`](skills/failure-recovery-and-rerun-planning/SKILL.md) to classify failed or partial state, preserve evidence, and plan safe recovery, resume, or rerun boundaries.
+
 ## v0.1 core skills
 
 - `repo-state-audit`
@@ -88,6 +90,7 @@ Use [`production-run-launch-and-monitoring`](skills/production-run-launch-and-mo
 - `cross-session-handoff-and-continuity`
 - `task-dossier-lifecycle`
 - `production-run-launch-and-monitoring`
+- `failure-recovery-and-rerun-planning`
 
 See [design principles](docs/design-principles.md), [customization guidance](docs/customization.md), and the [volatile documentation policy](docs/volatile-documentation-policy.md) for the repository-wide rules.
 
