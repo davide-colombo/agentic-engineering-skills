@@ -63,6 +63,8 @@ Use [`read-only-audit-protocol`](skills/read-only-audit-protocol/SKILL.md) for s
 
 Use [`git-integration-and-release-workflow`](skills/git-integration-and-release-workflow/SKILL.md) to integrate audited branches with fast-forward controls, separate local merges from pushes, clean up local branches, and close authorized tag or release workflows.
 
+Use [`prompt-crafting-for-coding-agents`](skills/prompt-crafting-for-coding-agents/SKILL.md) to write bounded, repository-aware prompts for implementation, audit, review, validation, handoff, integration, documentation, and authorized operational work.
+
 ## v0.1 core skills
 
 - `repo-state-audit`
@@ -76,6 +78,7 @@ Use [`git-integration-and-release-workflow`](skills/git-integration-and-release-
 
 - `read-only-audit-protocol`
 - `git-integration-and-release-workflow`
+- `prompt-crafting-for-coding-agents`
 
 See [design principles](docs/design-principles.md), [customization guidance](docs/customization.md), and the [volatile documentation policy](docs/volatile-documentation-policy.md) for the repository-wide rules.
 
