@@ -48,6 +48,8 @@ Use this canonical evaluation order: current task prompt, public base skill, pro
 
 Start with [`repo-state-audit`](skills/repo-state-audit/SKILL.md). It establishes whether the repository and current authorization are safe and aligned before an agent edits files, installs dependencies, contacts remotes, starts long jobs, or performs destructive operations.
 
+Use [`code-review-and-test-audit`](skills/code-review-and-test-audit/SKILL.md) for strict review and test-quality assessment before implementation, after changes, or before integration.
+
 ## v0.1 roadmap
 
 - `repo-state-audit`
