@@ -65,6 +65,8 @@ Use [`git-integration-and-release-workflow`](skills/git-integration-and-release-
 
 Use [`prompt-crafting-for-coding-agents`](skills/prompt-crafting-for-coding-agents/SKILL.md) to write bounded, repository-aware prompts for implementation, audit, review, validation, handoff, integration, documentation, and authorized operational work.
 
+Use [`cross-session-handoff-and-continuity`](skills/cross-session-handoff-and-continuity/SKILL.md) to preserve verified repository state, evidence, blockers, decisions, and one executable next action across chats, tools, and coding-agent runs.
+
 ## v0.1 core skills
 
 - `repo-state-audit`
@@ -79,6 +81,7 @@ Use [`prompt-crafting-for-coding-agents`](skills/prompt-crafting-for-coding-agen
 - `read-only-audit-protocol`
 - `git-integration-and-release-workflow`
 - `prompt-crafting-for-coding-agents`
+- `cross-session-handoff-and-continuity`
 
 See [design principles](docs/design-principles.md), [customization guidance](docs/customization.md), and the [volatile documentation policy](docs/volatile-documentation-policy.md) for the repository-wide rules.
 
