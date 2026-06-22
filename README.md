@@ -56,6 +56,8 @@ Use [`configuration-and-environment-integrity`](skills/configuration-and-environ
 
 Use [`hardware-aware-parallelism`](skills/hardware-aware-parallelism/SKILL.md) to audit worker topology, resource budgets, hidden threading, contention, and scaling behavior.
 
+Use [`data-transfer-and-integrity`](skills/data-transfer-and-integrity/SKILL.md) to audit transfers, manifests, checksums, partial state, archives, and provenance before downstream use.
+
 ## v0.1 roadmap
 
 - `repo-state-audit`
