@@ -50,6 +50,8 @@ Start with [`repo-state-audit`](skills/repo-state-audit/SKILL.md). It establishe
 
 Use [`code-review-and-test-audit`](skills/code-review-and-test-audit/SKILL.md) for strict review and test-quality assessment before implementation, after changes, or before integration.
 
+Use [`resumable-pipeline-design`](skills/resumable-pipeline-design/SKILL.md) to design or audit checkpointed multi-step workflows, failure recovery, and safe resume behavior.
+
 ## v0.1 roadmap
 
 - `repo-state-audit`
