@@ -4,9 +4,11 @@
 
 These instructions apply to this repository. Keep this file short, stable, and task-agnostic. Put detailed procedures in skills and project-specific facts in the project profile.
 
-## Authority order
+## Instruction and evidence model
 
-Follow, from highest to lowest authority: platform and safety rules; the current user task; this file; the project profile; the selected public skill; the local overlay. A lower layer may specialize a higher layer but must not weaken it. Stop and report unresolved conflicts.
+Apply this canonical model: current task prompt; project profile; selected public skill; local overlay; observed evidence; hooks or scripts for deterministic enforcement. The prompt defines the immediate objective, authorized actions, and task-specific constraints. The profile supplies stable project bindings. The skill supplies the reusable procedure. The overlay may specialize the skill or add stricter rules, but it must not weaken the skill, profile, or prompt unless the current task prompt explicitly authorizes the exception.
+
+On-disk reality is evidence, not a lower-priority instruction. Stop and report when observed state contradicts instructions or assumptions. Hooks and scripts enforce non-negotiable checks at execution time and are not advisory. Stop and report unresolved instruction conflicts.
 
 ## Project profile
 

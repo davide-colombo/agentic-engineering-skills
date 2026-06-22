@@ -14,7 +14,7 @@ Create a private derivative when the procedure itself must materially differ. Pr
 
 ### Base skill plus local overlay
 
-Prefer an unchanged public base skill plus a private local overlay for branch names, paths, commands, terminology, infrastructure policy, and stricter checks. Load the base skill first, then the project profile and overlay according to the project's authority convention.
+Prefer an unchanged public base skill plus a private local overlay for branch names, paths, commands, terminology, infrastructure policy, and stricter checks. Load the project profile, selected public skill, and overlay after establishing the current task prompt.
 
 Copy the templates into private project-controlled locations and customize the copies. For example:
 
@@ -27,7 +27,7 @@ cp templates/LOCAL_OVERLAY.md path/to/project/.claude/skills/repo-state-audit/LO
 
 These paths are examples, not requirements. Choose one profile location and one overlay convention appropriate to the agent integration, then reference them from the project's always-on instructions.
 
-Apply instructions and evidence in this canonical order: current task prompt, public base skill, project profile, local overlay, observed on-disk reality, then hooks or scripts for deterministic enforcement. An overlay may specialize the base skill but must not weaken higher-level safety constraints unless the current task prompt explicitly authorizes an exception. Observed state remains authoritative evidence, and deterministic enforcement may still block an action.
+Apply this canonical model: current task prompt, project profile, selected public skill, local overlay, observed evidence, then hooks or scripts for deterministic enforcement. The first four layers provide instructions and project bindings. Observed state is evidence, not a lower-priority instruction; stop and report when it contradicts instructions or assumptions. Hooks and scripts enforce non-negotiable checks at execution time and are not advisory. An overlay may specialize the selected skill but must not weaken the skill, project profile, or current prompt unless the current task prompt explicitly authorizes an exception.
 
 ## What to customize
 

@@ -10,10 +10,11 @@ This is an engineering method, not a prompt collection. Procedures belong in ski
 
 | Layer | Contains | Lifetime |
 | --- | --- | --- |
-| Public base skill | General procedure, checks, verdicts, and action boundaries | Reusable across projects |
+| Current task prompt | Immediate objective, authorized actions, task-specific constraints, and temporary state | One task or session |
 | Project profile | Stable project policy, commands, terminology, and repository conventions | Persistent within one private project |
+| Public base skill | General procedure, checks, verdicts, and action boundaries | Reusable across projects |
 | Private local overlay | Skill-specific project bindings, stricter checks, and approved specialization | Persistent within one private project |
-| Task prompt or session checkpoint | Current objective, expected state, authorization, and temporary findings | One task or session |
+| On-disk reality or observed evidence | Actual repository, filesystem, runtime, and validation state | Must be checked for each task |
 | Hook or deterministic script | Machine-enforced checks that must not depend on agent judgment | Persistent enforcement |
 
 Always-on files such as `AGENTS.md` and `CLAUDE.md` should remain short and task-agnostic. They should point to the relevant profile or skill rather than duplicate detailed procedures. Volatile software behavior should be checked against the installed version or current official documentation when the skill is used.
@@ -42,7 +43,7 @@ Choose one appropriate destination for each file and record those locations in t
 
 After installation, customize the private project profile and, when needed, a local overlay. Define protected and source-of-truth branches, permitted dirty or local-only files, forbidden paths, test and build commands, dependency policy, remote execution rules, deployment rules, domain terms, and reporting requirements. Do not modify the public base procedure merely to record current branch state, temporary exceptions, machine paths, credentials, or other volatile or private facts.
 
-Use this canonical evaluation order: current task prompt, public base skill, project profile, local overlay, observed on-disk reality, then hooks or scripts for deterministic enforcement. On-disk reality is evidence and cannot be overridden by documentation. A local overlay may specialize a base skill but must not weaken higher-level safety constraints unless the current task prompt explicitly authorizes the exception; deterministic hooks may still reject it.
+Use this canonical model: current task prompt, project profile, selected public skill, local overlay, observed evidence, then hooks or scripts for deterministic enforcement. The first four layers provide instructions and project bindings. On-disk reality is evidence, not a lower-priority instruction; if it contradicts instructions or assumptions, stop and report. Hooks and scripts enforce non-negotiable checks at execution time and are not advisory. A local overlay may specialize the selected skill but must not weaken the skill, project profile, or current prompt unless the current task prompt explicitly authorizes the exception.
 
 ## Recommended first skill
 
@@ -58,7 +59,7 @@ Use [`hardware-aware-parallelism`](skills/hardware-aware-parallelism/SKILL.md) t
 
 Use [`data-transfer-and-integrity`](skills/data-transfer-and-integrity/SKILL.md) to audit transfers, manifests, checksums, partial state, archives, and provenance before downstream use.
 
-## v0.1 roadmap
+## v0.1 core skills
 
 - `repo-state-audit`
 - `code-review-and-test-audit`
