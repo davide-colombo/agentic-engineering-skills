@@ -69,6 +69,8 @@ Use [`cross-session-handoff-and-continuity`](skills/cross-session-handoff-and-co
 
 Use [`task-dossier-lifecycle`](skills/task-dossier-lifecycle/SKILL.md) to manage optional, project-authorized task dossiers as durable records of decisions, evidence, plans, acceptance criteria, risks, and lifecycle state.
 
+Use [`production-run-launch-and-monitoring`](skills/production-run-launch-and-monitoring/SKILL.md) to plan, authorize, launch, monitor, intervene in, and validate long-running production jobs with explicit resource, observability, and evidence controls.
+
 ## v0.1 core skills
 
 - `repo-state-audit`
@@ -85,6 +87,7 @@ Use [`task-dossier-lifecycle`](skills/task-dossier-lifecycle/SKILL.md) to manage
 - `prompt-crafting-for-coding-agents`
 - `cross-session-handoff-and-continuity`
 - `task-dossier-lifecycle`
+- `production-run-launch-and-monitoring`
 
 See [design principles](docs/design-principles.md), [customization guidance](docs/customization.md), and the [volatile documentation policy](docs/volatile-documentation-policy.md) for the repository-wide rules.
 
