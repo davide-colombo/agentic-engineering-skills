@@ -79,6 +79,10 @@ Use [`agent-output-verification-and-claim-audit`](skills/agent-output-verificati
 
 Use [`evidence-citation-discipline`](skills/evidence-citation-discipline/SKILL.md) to write reports in which every consequential claim is bound to inspectable evidence, separating confirmed facts from interpretations, assumptions, and unresolved items.
 
+Use [`minimal-diff-implementation-discipline`](skills/minimal-diff-implementation-discipline/SKILL.md) to constrain implementing agents to the smallest correct change that satisfies the objective, preserving contracts and formatting, separating required fixes from deferred cleanup, and stopping at the authorized scope boundary.
+
+Use [`token-efficient-repository-inspection`](skills/token-efficient-repository-inspection/SKILL.md) to inspect repositories with the minimum reads required by an explicit evidence question, using inventory and search before targeted line-range reads and stopping once the evidence is sufficient.
+
 ## v0.1 core skills
 
 - `repo-state-audit`
@@ -103,6 +107,11 @@ Use [`evidence-citation-discipline`](skills/evidence-citation-discipline/SKILL.m
 
 - `agent-output-verification-and-claim-audit`
 - `evidence-citation-discipline`
+
+## v0.4 skills
+
+- `minimal-diff-implementation-discipline`
+- `token-efficient-repository-inspection`
 
 ## Local repository validation
 

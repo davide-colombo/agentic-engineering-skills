@@ -17,6 +17,7 @@ EXPECTED_SKILLS = (
     "failure-recovery-and-rerun-planning",
     "git-integration-and-release-workflow",
     "hardware-aware-parallelism",
+    "minimal-diff-implementation-discipline",
     "production-run-launch-and-monitoring",
     "prompt-crafting-for-coding-agents",
     "read-only-audit-protocol",
@@ -24,10 +25,15 @@ EXPECTED_SKILLS = (
     "repo-state-audit",
     "resumable-pipeline-design",
     "task-dossier-lifecycle",
+    "token-efficient-repository-inspection",
 )
 NEW_IN_V03 = (
     "agent-output-verification-and-claim-audit",
     "evidence-citation-discipline",
+)
+NEW_IN_V04 = (
+    "minimal-diff-implementation-discipline",
+    "token-efficient-repository-inspection",
 )
 LEAKAGE_PATTERNS = (
     "/Users/",
@@ -174,6 +180,19 @@ def main() -> int:
         reporter.check(
             "README has a v0.3 section heading",
             "## v0.3" in readme_text,
+        )
+        for skill in NEW_IN_V04:
+            reporter.check(
+                f"README references new skill {skill}",
+                skill in readme_text,
+            )
+            reporter.check(
+                f"README links to SKILL.md for {skill}",
+                f"skills/{skill}/SKILL.md" in readme_text,
+            )
+        reporter.check(
+            "README has a v0.4 section heading",
+            "## v0.4" in readme_text,
         )
 
     leaks: list[str] = []
