@@ -9,22 +9,32 @@ from pathlib import Path
 
 EXPECTED_SKILLS = (
     "agent-output-verification-and-claim-audit",
+    "bioinformatics-sequence-output-audit",
+    "classification-and-grouping-audit",
     "code-review-and-test-audit",
     "configuration-and-environment-integrity",
     "cross-session-handoff-and-continuity",
     "data-transfer-and-integrity",
     "evidence-citation-discipline",
+    "excel-workbook-integrity",
     "failure-recovery-and-rerun-planning",
     "git-integration-and-release-workflow",
     "hardware-aware-parallelism",
+    "large-output-root-hygiene",
+    "manifest-checksum-and-provenance",
+    "manual-curation-artifact-packaging",
     "minimal-diff-implementation-discipline",
+    "output-contract-and-table-schema-audit",
+    "pipeline-stage-contract-audit",
     "production-run-launch-and-monitoring",
     "prompt-crafting-for-coding-agents",
     "read-only-audit-protocol",
     "remote-execution-safety",
     "repo-state-audit",
     "resumable-pipeline-design",
+    "scientific-data-integrity-audit",
     "task-dossier-lifecycle",
+    "test-fixture-and-regression-design",
     "token-efficient-repository-inspection",
 )
 NEW_IN_V03 = (
@@ -34,6 +44,18 @@ NEW_IN_V03 = (
 NEW_IN_V04 = (
     "minimal-diff-implementation-discipline",
     "token-efficient-repository-inspection",
+)
+NEW_IN_V05 = (
+    "pipeline-stage-contract-audit",
+    "output-contract-and-table-schema-audit",
+    "manifest-checksum-and-provenance",
+    "large-output-root-hygiene",
+    "scientific-data-integrity-audit",
+    "test-fixture-and-regression-design",
+    "bioinformatics-sequence-output-audit",
+    "manual-curation-artifact-packaging",
+    "excel-workbook-integrity",
+    "classification-and-grouping-audit",
 )
 LEAKAGE_PATTERNS = (
     "/Users/",
@@ -193,6 +215,19 @@ def main() -> int:
         reporter.check(
             "README has a v0.4 section heading",
             "## v0.4" in readme_text,
+        )
+        for skill in NEW_IN_V05:
+            reporter.check(
+                f"README references new skill {skill}",
+                skill in readme_text,
+            )
+            reporter.check(
+                f"README links to SKILL.md for {skill}",
+                f"skills/{skill}/SKILL.md" in readme_text,
+            )
+        reporter.check(
+            "README has a v0.5 section heading",
+            "## v0.5" in readme_text,
         )
 
     leaks: list[str] = []

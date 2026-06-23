@@ -83,6 +83,26 @@ Use [`minimal-diff-implementation-discipline`](skills/minimal-diff-implementatio
 
 Use [`token-efficient-repository-inspection`](skills/token-efficient-repository-inspection/SKILL.md) to inspect repositories with the minimum reads required by an explicit evidence question, using inventory and search before targeted line-range reads and stopping once the evidence is sufficient.
 
+Use [`pipeline-stage-contract-audit`](skills/pipeline-stage-contract-audit/SKILL.md) to audit the explicit contract of one concrete pipeline stage, including its identity, inputs, outputs, sentinel semantics, resume and force behavior, intermediate state, atomic publication, logs, output column contracts, and downstream consumer assumptions.
+
+Use [`output-contract-and-table-schema-audit`](skills/output-contract-and-table-schema-audit/SKILL.md) to audit tabular scientific outputs against an explicit file-format, delimiter, encoding, header, column, row-identity, sort, unit, coordinate, missing-value, duplicate, controlled-vocabulary, precision, consumer-parity, and schema-change-test contract.
+
+Use [`manifest-checksum-and-provenance`](skills/manifest-checksum-and-provenance/SKILL.md) to audit manifests, checksums, provenance metadata, run inventories, and source-to-output traceability for any generated scientific artifact, not only transfers.
+
+Use [`large-output-root-hygiene`](skills/large-output-root-hygiene/SKILL.md) to classify and safely manage large output roots that mix final outputs, stale backups, failed runs, partial outputs, scratch data, and generated deliverables without losing valid results, breaking downstream references, or deleting evidence by default.
+
+Use [`scientific-data-integrity-audit`](skills/scientific-data-integrity-audit/SKILL.md) to audit scientific interpretation integrity, distinguishing biological or scientific absence from computational failure, separating confirmed facts from interpretations and assumptions, and detecting overclaim language.
+
+Use [`test-fixture-and-regression-design`](skills/test-fixture-and-regression-design/SKILL.md) to design minimal synthetic fixtures focused on invariants, separate unit, integration, smoke, and production-scale validation, and ensure regression coverage that would have failed before the fix.
+
+Use [`bioinformatics-sequence-output-audit`](skills/bioinformatics-sequence-output-audit/SKILL.md) to audit FASTA, FASTQ, aligned FASTA, alignment outputs, sequence-extraction outputs, and sequence-classification review artifacts for parseability, identifier uniqueness, header contract, alphabet, gap and casing semantics, coordinate extraction, strand conventions, duplicates, ID preservation, and source-to-output traceability.
+
+Use [`manual-curation-artifact-packaging`](skills/manual-curation-artifact-packaging/SKILL.md) to prepare scientific review and curation deliverables from internal pipeline outputs without overwriting source artifacts, with explicit inventory, source/review separation, archive layout, naming, summary tables, provenance, and reproducible packaging command.
+
+Use [`excel-workbook-integrity`](skills/excel-workbook-integrity/SKILL.md) to audit Excel workbook updates for scientific review with strict preservation of the original workbook, explicit new-workbook path, sheet inventory, column contracts, formula and style contracts, data validation, manual-curation flag handling, and export consistency with TSV or CSV sources.
+
+Use [`classification-and-grouping-audit`](skills/classification-and-grouping-audit/SKILL.md) to audit clustering, grouping, classification, label assignment, and variant-splitting algorithms and outputs against explicit objective, thresholds, determinism, tie-breaking, connected-component rules, representative selection, over-merge and over-split risk, threshold sensitivity, old-versus-new comparison, ID preservation, diagnostic artifacts, and separation of algorithmic grouping from biological interpretation.
+
 ## v0.1 core skills
 
 - `repo-state-audit`
@@ -112,6 +132,19 @@ Use [`token-efficient-repository-inspection`](skills/token-efficient-repository-
 
 - `minimal-diff-implementation-discipline`
 - `token-efficient-repository-inspection`
+
+## v0.5 skills
+
+- `pipeline-stage-contract-audit`
+- `output-contract-and-table-schema-audit`
+- `manifest-checksum-and-provenance`
+- `large-output-root-hygiene`
+- `scientific-data-integrity-audit`
+- `test-fixture-and-regression-design`
+- `bioinformatics-sequence-output-audit`
+- `manual-curation-artifact-packaging`
+- `excel-workbook-integrity`
+- `classification-and-grouping-audit`
 
 ## Local repository validation
 
