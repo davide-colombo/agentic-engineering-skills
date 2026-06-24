@@ -85,7 +85,7 @@ If local and remote revisions differ, state the difference and stop before assum
 ### 1. Establish the remote boundary
 
 1. State the task objective, remote target, action mode, allowed scope, and forbidden actions.
-2. Select exactly one primary mode: `COMMAND_PREPARATION`, `REMOTE_INSPECTION`, `REMOTE_EXECUTION`, `REMOTE_MONITORING`, `REMOTE_TRANSFER`, or `REMOTE_MUTATION`.
+2. Select exactly one primary mode: `COMMAND_PREPARATION`, `REMOTE_INSPECTION`, `REMOTE_PREPARE_AND_HANDOFF_ONLY`, `REMOTE_EXECUTION`, `REMOTE_MONITORING`, `REMOTE_TRANSFER`, or `REMOTE_MUTATION`. For any remote long-running production, scientific, data-processing, extraction, or real-output validation run, default to `REMOTE_PREPARE_AND_HANDOFF_ONLY` unless the current prompt explicitly authorizes the specific run command.
 3. Record whether commands will run inside an existing remote shell, be supplied as user-run one-liners, or be executed through authorized agent-side SSH.
 4. Separate local facts, remote facts, assumptions, and unknowns.
 5. Confirm authorization immediately before any network connection or remote action.
@@ -173,6 +173,21 @@ Run a dry-run first when supported and authorized. Use `data-transfer-and-integr
 ### 7. Govern remote production work
 
 For long-running remote jobs, apply `production-run-launch-and-monitoring` and require explicit launch authorization, observed preflight, resource settings, an approved long-run mechanism, inspectable logs and progress, sentinels, and a monitoring handoff. Use monitoring-only prompts after launch. Do not claim final success before completion evidence and validation exist.
+
+The default remote posture for any long-running production, scientific, data-processing, extraction, or real-output validation run is `REMOTE_PREPARE_AND_HANDOFF_ONLY`. Under this posture:
+
+1. Perform authorized read-only remote inspection and any explicitly authorized deployment, dependency, or configuration setup actions.
+2. Verify input, config, environment, hardware, existing session, sentinel, and output-root state required for the run.
+3. Stop before initiating the long-running run on the remote target. Do not open a fresh remote channel solely to start the run.
+4. Produce exact, ready-to-paste handoff content for the user:
+   - Long-run session creation command for the approved terminal multiplexer or detached session mechanism, including session name, working directory, environment activation, resource caps, and log path.
+   - Run command to execute inside that session.
+   - Detach and reattach instructions for the chosen session mechanism.
+   - Read-only monitoring commands and observation cadence.
+   - Post-run verification commands to run after independent completion evidence exists.
+   - Expected success conditions and stop conditions for the user.
+
+If a prompt combines remote preflight, deployment, setup, or verification with a long-running run command without explicit same-prompt run authorization for that specific command, treat the ambiguity as forbidding the run: complete the preflight, stop before the run, and produce the manual handoff above. Authorization to deploy code, update dependencies, run short bounded validation, or perform read-only inspection is not authorization to launch a long-running remote run.
 
 ### 8. Govern remote recovery and reruns
 
@@ -307,6 +322,7 @@ Produce exactly these sections:
 
 - `REMOTE_INSPECTION_READY`: target, authorization, paths, and read-only commands are established for remote inspection.
 - `REMOTE_COMMANDS_READY_FOR_USER`: safe commands are prepared for user execution but were not run by the agent.
+- `REMOTE_LONG_RUN_PREPARED_FOR_MANUAL_HANDOFF`: remote preflight, authorized deployment or setup, and state verification completed; exact session creation, run, detach and reattach, monitoring, post-run verification, success-condition, and stop-condition content prepared for the user to execute manually; no long-running remote run launched.
 - `REMOTE_EXECUTION_READY`: remote target, authorization, state, environment, command, and scope gates permit execution.
 - `REMOTE_MONITORING_READY`: run identity, authorization, read-only evidence paths, and monitoring commands are established.
 - `REMOTE_MUTATION_READY_WITH_AUTHORIZATION`: explicit mutation authorization and all target, active-state, preservation, and scope gates pass.
@@ -326,4 +342,5 @@ Do not:
 - Kill jobs because they sleep or use little CPU without phase and progress evidence.
 - Delete remote outputs before active-writer and downstream-reference checks.
 - Mix remote launch, monitoring, failure recovery, cleanup, and final validation in one prompt.
+- Launch a long-running remote production, scientific, or data-processing run when the prompt mixes remote preflight, deployment, setup, or verification with the run command without explicit same-prompt run authorization that names the exact command, expected duration class, resource caps, detach behavior, monitoring behavior, and final-validation boundary.
 - Include private remote details in public reusable instructions.

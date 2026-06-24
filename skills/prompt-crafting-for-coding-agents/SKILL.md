@@ -150,6 +150,33 @@ Set each category to authorized or forbidden:
 
 If the prompt does not explicitly authorize an action, forbid it. Authorization for one category does not imply another: commit does not imply push; remote read does not imply remote write; merge does not imply branch deletion; tag creation does not imply tag push.
 
+## Long-running run handoff guardrail
+
+Every prompt that touches a production, scientific, data-processing, extraction, or real-output validation run must distinguish three action classes:
+
+- Safe preflight or setup action: repository inspection, code deployment with the project's approved deployment mechanism, authorized dependency installation or update, input and config presence and parse checks, environment identity checks, hardware and resource inspection, existing session and process inspection, sentinel and output-root status inspection, and production of exact run, monitoring, and verification commands.
+- Short bounded validation action: a command whose runtime, output, and side effects are bounded within the current session and whose failure does not require interactive recovery.
+- Long-running execution action: a run whose runtime class may exceed a bounded session, requires durable progress, sentinels, or detached execution, or must survive session loss.
+
+The default posture for any prompt that touches a long-running execution action is `PREPARE_AND_HANDOFF_ONLY`, not `RUN_AND_WAIT`. Under this posture the prompt must instruct the agent to:
+
+1. Perform only authorized safe preflight or setup actions and short bounded validation actions.
+2. Stop before any long-running execution action.
+3. Produce a manual handoff containing the exact long-run session creation command for the approved terminal multiplexer or detached session mechanism, the exact run command, detach and reattach instructions, logging convention, read-only monitoring commands, post-run verification commands, expected success conditions, and stop conditions for the user.
+
+A prompt that combines preflight, setup, or short validation with a long-running execution action without explicit same-prompt run authorization for that specific command is ambiguous. Require the agent to complete preflight, stop before the run, and produce the manual handoff. Do not rely on the agent to infer execution authority from generic capability language, deployment authorization, or prior monitoring authority.
+
+When the prompt explicitly authorizes the agent to launch a long-running execution action, it must state:
+
+- Exact command and working directory.
+- Expected duration class.
+- Resource limits and topology caps.
+- Detach or background behavior and the long-run session mechanism.
+- Monitoring behavior, including whether the agent waits, polls, or only launches and detaches.
+- Final-validation boundary, intervention authority, and stop conditions.
+
+A prompt missing any element above must not be presented as execution-ready for the long-running action; downgrade it to `PREPARE_AND_HANDOFF_ONLY` and rely on the manual handoff. Apply `production-run-launch-and-monitoring` when the run is local and `remote-execution-safety` together with `production-run-launch-and-monitoring` when the run is remote.
+
 ## Validation specification
 
 For each validation command, specify:
@@ -218,6 +245,8 @@ Keep commands and placeholders internally consistent. Do not present optional co
 Do not:
 
 - Combine launch and final validation of a long-running job in one prompt. Use separate launch, monitor, and completion-validation prompts.
+- Combine preflight, deployment, setup, or short validation with a long-running execution action in one prompt without explicit same-prompt run authorization that names the exact command, expected duration class, resource caps, detach behavior, monitoring behavior, and final-validation boundary.
+- Use phrases such as "if needed," "as appropriate," "then run the pipeline," or "kick off the run" to imply that the agent may launch a long-running execution action.
 - Treat an agent's audit of its own unreviewed implementation as final independent authority.
 - Allow “any relevant files” when a narrow allowlist is possible.
 - Omit branch, HEAD, and status checks.

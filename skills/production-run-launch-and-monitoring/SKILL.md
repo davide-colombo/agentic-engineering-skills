@@ -61,7 +61,9 @@ Treat missing required input as unknown, not as permission to infer a production
 
 ### 1. Establish mode and scope
 
-Select one mode: `PREFLIGHT_ONLY`, `LAUNCH_ONLY`, `MONITORING_ONLY`, `FAILURE_TRIAGE`, `RECOVERY_PLANNING`, or `FINAL_VALIDATION`. Record the authorized actions, forbidden actions, target run identity, evidence sources, and completion boundary.
+Select one mode: `PREFLIGHT_ONLY`, `PREPARE_AND_HANDOFF_ONLY`, `LAUNCH_ONLY`, `MONITORING_ONLY`, `FAILURE_TRIAGE`, `RECOVERY_PLANNING`, or `FINAL_VALIDATION`. Record the authorized actions, forbidden actions, target run identity, evidence sources, and completion boundary.
+
+The default mode for any production, scientific, or data-processing run whose runtime class may exceed a single bounded interactive session is `PREPARE_AND_HANDOFF_ONLY`, not `LAUNCH_ONLY` or run-and-wait. Treat absence of explicit same-prompt run authorization for that specific command as a forbidding signal, not as license to launch.
 
 ### 2. Run preflight checks
 
@@ -156,6 +158,41 @@ Use separate prompts for:
 5. Final validation after completion.
 
 Do not ask an agent to launch a long-running job and also claim final validation in the same prompt unless the job is demonstrably bounded and completes within the session. Do not combine launch, recovery, cleanup, and final validation authority.
+
+## Manual handoff guardrail for long-running runs
+
+Classify every action covered by the prompt as exactly one of:
+
+- Safe preflight or setup action: repository inspection, code deployment with the project's approved deployment mechanism, authorized dependency installation or update, input and config presence and parse checks, environment identity checks, hardware and resource inspection, existing session and process inspection, sentinel and output-root status inspection, and production of exact run, monitoring, and verification commands.
+- Short bounded validation action: a command whose runtime, output, and side effects are bounded within the current session and whose failure does not require interactive recovery.
+- Long-running execution action: a production, scientific, data-processing, extraction, or real-output validation run whose runtime class may exceed a bounded session, requires durable progress, sentinels, or detached execution, or must survive session loss.
+
+Under `PREPARE_AND_HANDOFF_ONLY`, the default behavior is:
+
+1. Perform only authorized safe preflight or setup actions and short bounded validation actions.
+2. Stop before any long-running execution action.
+3. Produce a manual handoff that contains:
+   - Exact long-run session creation command for the approved terminal multiplexer or detached session mechanism, including session name, working directory, environment activation, resource caps, and log path.
+   - Exact run command to execute inside that session.
+   - Detach and reattach instructions for the chosen session mechanism.
+   - Logging convention, including log path, rotation expectation, and where progress artifacts and sentinels will appear.
+   - Read-only monitoring commands and observation cadence.
+   - Post-run verification commands to run after independent completion evidence exists.
+   - Expected success conditions, including completion sentinel, output contract, and acceptance criteria.
+   - Stop conditions for the user, including stall, failure, and partial-state evidence and the next safe action.
+
+If a prompt mixes safe preflight or setup actions with a long-running execution action without explicit same-prompt run authorization for that specific command, treat the ambiguity as forbidding execution: complete the preflight, stop before the run, and produce the manual handoff above.
+
+Explicit same-prompt run authorization for a long-running execution action must supply:
+
+- Exact command and working directory.
+- Expected duration class.
+- Resource limits and topology caps.
+- Detach or background behavior and the long-run session mechanism.
+- Monitoring behavior, including whether the agent waits, polls, or only launches and detaches.
+- Final-validation boundary, intervention authority, and stop conditions.
+
+Without every element above, refuse the long-running execution action and produce the manual handoff. Authorization to deploy code, install dependencies, or run short bounded validation is not authorization to launch a long-running run.
 
 ## Evidence rules
 
@@ -260,6 +297,7 @@ Produce exactly these sections:
 
 ## Verdicts
 
+- `PRODUCTION_RUN_PREPARED_FOR_MANUAL_HANDOFF`: authorized preflight, setup, and verification actions completed; exact long-run session, run, monitoring, post-run verification, success-condition, and stop-condition content prepared for the user to execute manually; no long-running run launched.
 - `PRODUCTION_RUN_READY_TO_LAUNCH`: preflight passes and launch authorization exists, but no launch occurred.
 - `PRODUCTION_RUN_LAUNCHED`: launch occurred, a stable run identity and inspectable evidence exist, but progress is not yet established.
 - `PRODUCTION_RUN_RUNNING`: the run exists and monitoring evidence classifies it as running, progressing, or idle but expected.
@@ -283,4 +321,6 @@ Do not:
 - Kill or restart because CPU appears low without phase evidence.
 - Delete partial outputs before classification and active-writer checks.
 - Mix launch, recovery, cleanup, and final validation in one prompt.
+- Execute a long-running production, scientific, or data-processing run when the prompt mixes preflight, setup, deployment, or short validation with the run command without explicit same-prompt run authorization that supplies the exact command, expected duration class, resource limits, detach behavior, monitoring behavior, and final-validation boundary.
+- Substitute run-and-wait for the manual handoff posture when the runtime class may exceed a bounded session.
 - Hide exact commands or config paths from the final report.
